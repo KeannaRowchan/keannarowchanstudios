@@ -1,0 +1,233 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+}
+
+const { title = "Studio Ke" } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+const navItems = [
+	{ href: "/about", label: "Home" },
+	{ href: "/blog", label: "Sewing Blog" },
+	{ href: "/shop", label: "Shop" },
+	{ href: "/trends", label: "Trend Forecasts" },
+	{ href: "/customize", label: "Customize" },
+];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<header class="site-header">
+			<a class="brand-label" href="/about" aria-label="Studio Ke home">
+				<h1 class="brand">Studio Ke</h1>
+				<p class="tagline">handmade, with love, customizable and one of a kind pieces</p>
+			</a>
+		</header>
+
+		<nav class="site-nav" aria-label="Sections">
+			<ul>
+				{
+					navItems.map((item) => (
+						<li>
+							<a
+								href={item.href}
+								class:list={["nav-link", { active: path === item.href }]}
+								aria-current={path === item.href ? "page" : undefined}
+							>
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<main class="site-main">
+			<slot />
+		</main>
+
+		<footer class="site-footer">
+			<p>&copy; {new Date().getFullYear()} Studio Ke · made by hand</p>
+		</footer>
+
+		<style is:global>
+			:root {
+				--ink: #2d2d2d;
+				--body-ink: #3a3036;
+				--accent: #c64a73;
+				--accent-soft: #ffe0eb;
+				--accent-line: #ffb3c6;
+				--stripe-pink: #ffd6e0;
+				--stripe-white: #ffffff;
+			}
+
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				background: #ffffff;
+				color: var(--body-ink);
+				font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+				font-size: 16px;
+				line-height: 1.6;
+			}
+
+			.site-header {
+				background: repeating-linear-gradient(
+					to bottom,
+					var(--stripe-pink) 0,
+					var(--stripe-pink) 40px,
+					var(--stripe-white) 40px,
+					var(--stripe-white) 80px
+				);
+				padding: 4.5rem 1.5rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.brand-label {
+				display: block;
+				position: relative;
+				background: #ffffff;
+				border: 3px solid var(--ink);
+				border-radius: 6px;
+				padding: 1.75rem clamp(1.5rem, 5vw, 3.5rem);
+				box-shadow:
+					0 6px 0 rgba(255, 96, 144, 0.45),
+					0 18px 30px rgba(80, 30, 60, 0.18);
+				text-decoration: none;
+				color: inherit;
+				text-align: center;
+				max-width: min(720px, 92vw);
+			}
+			.brand-label::before {
+				content: "";
+				position: absolute;
+				inset: 8px;
+				border: 2px dashed var(--accent);
+				border-radius: 3px;
+				pointer-events: none;
+			}
+
+			.brand {
+				font-family: "Georgia", "Times New Roman", serif;
+				font-size: clamp(2.5rem, 7vw, 5rem);
+				font-weight: 700;
+				color: var(--accent);
+				margin: 0;
+				letter-spacing: 0.05em;
+				line-height: 1;
+			}
+
+			.tagline {
+				margin: 0.9rem 0 0;
+				font-style: italic;
+				color: #8a6573;
+				font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+				letter-spacing: 0.02em;
+				line-height: 1.4;
+			}
+
+			.site-nav {
+				background: #ffffff;
+				border-bottom: 1.5px dashed var(--accent-line);
+				padding: 1rem 1.5rem;
+				position: sticky;
+				top: 0;
+				z-index: 10;
+			}
+			.site-nav ul {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.5rem;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.nav-link {
+				display: inline-block;
+				padding: 0.5rem 1.1rem;
+				border: 1.5px solid var(--accent);
+				border-radius: 9999px;
+				color: var(--accent);
+				font-size: 0.95rem;
+				font-weight: 500;
+				text-decoration: none;
+				transition:
+					background 0.15s ease,
+					color 0.15s ease;
+				line-height: 1.2;
+			}
+			.nav-link:hover {
+				background: var(--accent-soft);
+			}
+			.nav-link.active {
+				background: var(--accent);
+				color: #ffffff;
+			}
+			.nav-link:focus-visible {
+				outline: 2px solid var(--accent);
+				outline-offset: 2px;
+			}
+
+			.site-main {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 3rem 1.5rem 4rem;
+			}
+
+			.section-heading {
+				font-family: "Georgia", "Times New Roman", serif;
+				font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+				font-weight: 600;
+				color: var(--ink);
+				margin: 0 0 1.5rem;
+				text-align: center;
+			}
+
+			.prose p {
+				margin: 0 0 1.1rem;
+				color: var(--body-ink);
+				font-size: 1.05rem;
+				line-height: 1.7;
+			}
+			.prose p:last-child {
+				margin-bottom: 0;
+			}
+
+			.coming-soon {
+				margin: 2rem auto 0;
+				max-width: 480px;
+				padding: 1.5rem;
+				border: 1.5px dashed var(--accent-line);
+				border-radius: 6px;
+				background: #fff8fa;
+				color: #8a6573;
+				font-style: italic;
+				text-align: center;
+			}
+
+			.site-footer {
+				border-top: 1.5px dashed var(--accent-line);
+				padding: 1.5rem;
+				text-align: center;
+				color: #b08296;
+				font-size: 0.85rem;
+			}
+			.site-footer p {
+				margin: 0;
+			}
+		</style>
+	</body>
+</html>
