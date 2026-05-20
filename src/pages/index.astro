@@ -1,4 +1,5 @@
 ---
+import "../styles/global.css";
 ---
 
 <html lang="en">
@@ -7,25 +8,447 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>About — Keanna Rowchan</title>
+		<title>Keanna Rowchan Studios</title>
 	</head>
-	<body class="bg-white text-gray-900 font-sans">
-		<main class="max-w-2xl mx-auto px-6 py-24">
-			<nav class="mb-12 text-sm">
-				<a href="/" class="hover:underline">← Back</a>
-			</nav>
-			<h1 class="text-3xl font-semibold mb-6">About</h1>
-			<div class="space-y-4 text-gray-700 leading-relaxed">
-				<p>
-					I'm a PhD candidate in cognitive neuroscience at [your university], where I study whole-brain connectivity using dimensionality reduction and manifold learning approaches on fMRI data.
-				</p>
-				<p>
-					Alongside my research, I sew. I'm building toward a career that combines technical work in computational analysis with the creative and material side of fashion.
-				</p>
-				<p>
-					This site documents projects at that intersection.
-				</p>
-			</div>
-		</main>
+	<body>
+		<div id="intro" data-state="idle" class="intro">
+			<svg
+				class="machine"
+				viewBox="0 0 500 450"
+				xmlns="http://www.w3.org/2000/svg"
+				role="img"
+				aria-label="Cartoon sewing machine with foot pedal"
+			>
+				<ellipse cx="250" cy="318" rx="200" ry="7" fill="rgba(60,30,50,0.12)" />
+
+				<rect x="55" y="240" width="390" height="62" rx="8" fill="#b8845a" stroke="#3a2818" stroke-width="3.5" />
+				<rect x="55" y="240" width="390" height="14" fill="#a87545" stroke="#3a2818" stroke-width="3.5" />
+
+				<path
+					d="M100 95 Q100 80 115 80 L375 80 Q390 80 390 95 L390 140 L385 140 L385 220 Q385 232 373 232 L342 232 Q330 232 330 220 L330 140 L215 140 L215 240 Q215 252 203 252 L112 252 Q100 252 100 240 Z"
+					fill="#fffaf0"
+					stroke="#3a2818"
+					stroke-width="4"
+					stroke-linejoin="round"
+				/>
+
+				<line x1="110" y1="110" x2="380" y2="110" stroke="#ffb3c6" stroke-width="3" />
+				<circle cx="365" cy="120" r="4" fill="#ff6090" />
+				<circle cx="350" cy="120" r="4" fill="#ff6090" />
+
+				<g class="wheel-group">
+					<circle cx="148" cy="195" r="24" fill="#e8d5b7" stroke="#3a2818" stroke-width="3" />
+					<circle cx="148" cy="195" r="20" fill="none" stroke="#3a2818" stroke-width="1.5" stroke-dasharray="3 4" />
+					<circle cx="148" cy="195" r="5" fill="#3a2818" />
+				</g>
+
+				<rect x="178" y="50" width="5" height="32" rx="2" fill="#3a2818" />
+				<g class="spool-group">
+					<rect x="160" y="62" width="42" height="18" rx="2" fill="#ffffff" stroke="#3a2818" stroke-width="2" />
+					<rect x="165" y="64" width="32" height="14" fill="#ff8fab" />
+				</g>
+
+				<path
+					d="M181 64 Q260 50 358 90 Q368 100 358 225"
+					stroke="#ff6090"
+					stroke-width="2"
+					fill="none"
+					stroke-linecap="round"
+				/>
+
+				<rect x="346" y="220" width="22" height="30" rx="2" fill="#5a5a5a" stroke="#3a2818" stroke-width="2" />
+
+				<g class="needle-group">
+					<line x1="357" y1="250" x2="357" y2="270" stroke="#c0c0c0" stroke-width="2.5" />
+					<circle cx="357" cy="248" r="1.6" fill="#3a2818" />
+				</g>
+
+				<g class="fabric-group">
+					<rect class="fabric" x="220" y="270" width="160" height="22" rx="2" fill="#ffffff" stroke="#cccccc" stroke-width="1.5" />
+					<line x1="230" y1="281" x2="370" y2="281" stroke="#ff6090" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round" />
+					<rect class="stitch-cover" x="230" y="271" width="142" height="20" fill="#ffffff" />
+				</g>
+
+				<g class="foot-group">
+					<line x1="340" y1="245" x2="340" y2="268" stroke="#3a2818" stroke-width="3.5" />
+					<path
+						d="M328 270 L376 270 L373 280 L331 280 Z"
+						fill="#d0d0d0"
+						stroke="#3a2818"
+						stroke-width="2.5"
+						stroke-linejoin="round"
+					/>
+					<line x1="340" y1="268" x2="340" y2="280" stroke="#3a2818" stroke-width="1.5" />
+					<line x1="362" y1="268" x2="362" y2="280" stroke="#3a2818" stroke-width="1.5" />
+				</g>
+
+				<!-- power cord from machine to foot pedal -->
+				<path
+					class="cord"
+					d="M 395 248 C 470 290, 460 380, 360 400"
+					stroke="#1a1a1a"
+					stroke-width="4"
+					fill="none"
+					stroke-linecap="round"
+				/>
+
+				<!-- foot pedal sitting on the floor -->
+				<g class="pedal-group">
+					<ellipse cx="265" cy="432" rx="105" ry="7" fill="rgba(0,0,0,0.22)" />
+					<rect x="170" y="385" width="190" height="42" rx="20" fill="#1a1a1a" stroke="#000000" stroke-width="2" />
+					<ellipse cx="265" cy="392" rx="80" ry="13" fill="#2d2d2d" />
+					<ellipse cx="265" cy="389" rx="68" ry="8" fill="#3a3a3a" />
+					<ellipse cx="245" cy="386" rx="34" ry="2.5" fill="rgba(255,255,255,0.18)" />
+					<!-- cord attachment plug -->
+					<rect x="350" y="395" width="14" height="14" rx="3" fill="#0d0d0d" stroke="#000" stroke-width="1.5" />
+				</g>
+
+				<circle class="pulse-ring" cx="265" cy="395" r="58" fill="none" stroke="#ff6090" stroke-width="3" />
+
+				<!-- the sewn fabric, transformed into the logo banner (drawn last so it sits above the cord/pedal once it grows) -->
+				<g class="logo-fabric" aria-hidden="true">
+					<rect x="222" y="276" width="160" height="22" rx="2" fill="rgba(255, 96, 144, 0.4)" />
+					<rect x="220" y="270" width="160" height="22" rx="2" fill="#ffffff" stroke="#3a2818" stroke-width="1.5" />
+					<rect class="logo-border" x="224" y="274" width="152" height="14" rx="1" fill="none" stroke="#ff6090" stroke-width="0.7" stroke-dasharray="3 2" />
+					<text
+						class="logo-text"
+						x="300"
+						y="285.5"
+						text-anchor="middle"
+						font-family="Georgia, 'Times New Roman', serif"
+						font-size="9.5"
+						font-weight="700"
+						fill="#c64a73"
+						letter-spacing="0.4"
+					>Keanna Rowchan Studios</text>
+				</g>
+
+				<ellipse class="hotspot" cx="265" cy="402" rx="105" ry="32" fill="transparent" />
+			</svg>
+
+			<p class="prompt">↑ Press and hold the foot pedal</p>
+
+			<p class="enter-hint" aria-hidden="true">
+				Press <kbd>Space</kbd> to Enter
+			</p>
+		</div>
+
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				overflow: hidden;
+				font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+			}
+
+			.intro {
+				position: fixed;
+				inset: 0;
+				background-color: #ffd6e0;
+				background-image:
+					radial-gradient(circle, #ffffff 6px, transparent 7px),
+					radial-gradient(circle, #ffffff 6px, transparent 7px);
+				background-size: 60px 60px;
+				background-position: 0 0, 30px 30px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 1.5rem;
+			}
+
+			.machine {
+				width: min(620px, 92vw);
+				max-height: 72vh;
+				display: block;
+				filter: drop-shadow(0 8px 16px rgba(80, 30, 60, 0.12));
+			}
+
+			.pedal-group {
+				transform-box: fill-box;
+				transform-origin: center;
+				transition: transform 0.1s ease-out;
+			}
+			.intro.holding .pedal-group {
+				transform: translateY(4px) scaleY(0.92);
+			}
+
+			.hotspot {
+				cursor: pointer;
+				pointer-events: auto;
+				touch-action: none;
+				-webkit-user-select: none;
+				user-select: none;
+			}
+
+			.intro[data-state="done"] .hotspot {
+				pointer-events: none;
+				cursor: default;
+			}
+
+			/* idle: pulse around the foot pedal */
+			.pulse-ring {
+				transform-box: fill-box;
+				transform-origin: center;
+				opacity: 0;
+			}
+			.intro[data-state="idle"] .pulse-ring {
+				animation: pulse 1.6s ease-out infinite;
+			}
+			@keyframes pulse {
+				0% {
+					transform: scale(0.55);
+					opacity: 0.9;
+				}
+				100% {
+					transform: scale(2);
+					opacity: 0;
+				}
+			}
+
+			/* prompt below machine */
+			.prompt {
+				margin: 0;
+				color: #c64a73;
+				font-size: 1.05rem;
+				font-weight: 600;
+				letter-spacing: 0.02em;
+				text-align: center;
+				transition: opacity 0.3s ease;
+			}
+			.intro:not([data-state="idle"]) .prompt {
+				opacity: 0;
+			}
+
+			/* sewing animations are driven via the Web Animations API from JS so they can be paused/resumed
+			   reliably when the user releases the foot pedal mid-stitch */
+			.needle-group {
+				transform-box: fill-box;
+				transform-origin: center;
+			}
+			.wheel-group {
+				transform-box: fill-box;
+				transform-origin: center;
+			}
+			.spool-group {
+				transform-box: fill-box;
+				transform-origin: center;
+			}
+			.stitch-cover {
+				transform-box: fill-box;
+				transform-origin: right center;
+			}
+			.intro[data-state="done"] .stitch-cover {
+				transform: scaleX(0);
+			}
+
+			/* done: mini fabric hides instantly; logo-fabric takes over at the same position, falls and grows into the brand banner */
+			.fabric-group {
+				transform-box: fill-box;
+				transform-origin: center;
+			}
+			.intro[data-state="done"] .fabric-group {
+				opacity: 0;
+				transition: opacity 0.1s linear;
+			}
+
+			.logo-fabric {
+				transform-box: fill-box;
+				transform-origin: center;
+				opacity: 0;
+				pointer-events: none;
+			}
+			.intro[data-state="done"] .logo-fabric {
+				animation: logo-grow 1.6s cubic-bezier(0.55, 0.05, 0.4, 1.12) forwards;
+			}
+			@keyframes logo-grow {
+				0% {
+					opacity: 1;
+					transform: translate(0, 0) rotate(0deg) scale(1);
+				}
+				18% {
+					opacity: 1;
+					transform: translate(15px, 40px) rotate(10deg) scale(1.1);
+				}
+				50% {
+					opacity: 1;
+					transform: translate(-10px, 80px) rotate(-3deg) scale(1.8);
+				}
+				78% {
+					opacity: 1;
+					transform: translate(-50px, 68px) rotate(2deg) scale(2.85);
+				}
+				100% {
+					opacity: 1;
+					transform: translate(-50px, 65px) rotate(0deg) scale(3);
+				}
+			}
+
+			.logo-text {
+				opacity: 0;
+			}
+			.intro[data-state="done"] .logo-text {
+				animation: logo-text-in 0.7s ease-out 1s forwards;
+			}
+			@keyframes logo-text-in {
+				to {
+					opacity: 1;
+				}
+			}
+
+			/* press space hint */
+			.enter-hint {
+				position: absolute;
+				bottom: 7%;
+				left: 50%;
+				transform: translateX(-50%);
+				margin: 0;
+				color: #c64a73;
+				font-size: 0.95rem;
+				letter-spacing: 0.06em;
+				opacity: 0;
+			}
+			.enter-hint kbd {
+				display: inline-block;
+				background: #ffffff;
+				border: 2px solid #c64a73;
+				border-radius: 5px;
+				padding: 2px 10px;
+				margin: 0 4px;
+				font-family: inherit;
+				font-weight: 700;
+				box-shadow: 0 2px 0 #c64a73;
+			}
+			.intro[data-state="done"] .enter-hint {
+				animation:
+					hint-in 0.6s ease-out 1.4s forwards,
+					blink 1.6s ease-in-out 2.2s infinite;
+			}
+			@keyframes hint-in {
+				to {
+					opacity: 1;
+				}
+			}
+			@keyframes blink {
+				0%,
+				100% {
+					opacity: 1;
+				}
+				50% {
+					opacity: 0.55;
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.intro[data-state="idle"] .pulse-ring {
+					animation: none;
+				}
+			}
+		</style>
+
+		<script>
+			const intro = document.getElementById("intro")!;
+			const hotspot = intro.querySelector(".hotspot")!;
+			const stitchCover = intro.querySelector(".stitch-cover") as SVGElement;
+			const needleGroup = intro.querySelector(".needle-group") as SVGElement;
+			const wheelGroup = intro.querySelector(".wheel-group") as SVGElement;
+			const spoolGroup = intro.querySelector(".spool-group") as SVGElement;
+
+			const SEW_DURATION_MS = 3000;
+
+			let sewElapsed = 0; // ms of sewing accumulated so far
+			let holdStartedAt: number | null = null; // wall-clock ms when the current hold began
+			let rafHandle: number | null = null;
+			let intervalHandle: number | null = null;
+
+			function applyFrame(totalMs: number) {
+				const progress = Math.min(1, totalMs / SEW_DURATION_MS);
+				stitchCover.style.transform = `scaleX(${1 - progress})`;
+
+				// only animate the machine bits while we're actively holding
+				const holding = intro.classList.contains("holding");
+				if (holding) {
+					const wheelDeg = ((totalMs / 500) * 360) % 360;
+					wheelGroup.style.transform = `rotate(${wheelDeg}deg)`;
+
+					const needleT = (totalMs % 160) / 160;
+					const needleY = (1 - Math.cos(needleT * Math.PI * 2)) * 5.5; // 0..11
+					needleGroup.style.transform = `translateY(${needleY}px)`;
+
+					const spoolT = (totalMs % 400) / 400;
+					const spoolDeg = Math.sin(spoolT * Math.PI * 2) * 2;
+					spoolGroup.style.transform = `rotate(${spoolDeg}deg)`;
+				}
+			}
+
+			function tick() {
+				if (holdStartedAt == null) return;
+				const totalMs = sewElapsed + (Date.now() - holdStartedAt);
+				applyFrame(totalMs);
+				if (totalMs >= SEW_DURATION_MS) {
+					sewElapsed = SEW_DURATION_MS;
+					holdStartedAt = null;
+					stopTicker();
+					intro.dataset.state = "done";
+					intro.classList.remove("holding");
+					return;
+				}
+				rafHandle = requestAnimationFrame(tick);
+			}
+
+			function startTicker() {
+				if (rafHandle == null) rafHandle = requestAnimationFrame(tick);
+				// setInterval backup so animation still progresses in throttled contexts (eg. preview tools)
+				if (intervalHandle == null) intervalHandle = window.setInterval(tick, 16);
+			}
+
+			function stopTicker() {
+				if (rafHandle != null) {
+					cancelAnimationFrame(rafHandle);
+					rafHandle = null;
+				}
+				if (intervalHandle != null) {
+					clearInterval(intervalHandle);
+					intervalHandle = null;
+				}
+			}
+
+			function startHold(e?: Event) {
+				if (e && e.cancelable) e.preventDefault();
+				if (intro.dataset.state === "done") return;
+				if (intro.dataset.state === "idle") intro.dataset.state = "sewing";
+				if (intro.classList.contains("holding")) return;
+				intro.classList.add("holding");
+				holdStartedAt = Date.now();
+				startTicker();
+			}
+
+			function endHold() {
+				if (!intro.classList.contains("holding")) return;
+				intro.classList.remove("holding");
+				if (holdStartedAt != null) {
+					sewElapsed += Date.now() - holdStartedAt;
+					holdStartedAt = null;
+				}
+				stopTicker();
+				needleGroup.style.transform = "translateY(0)";
+			}
+
+			hotspot.addEventListener("mousedown", startHold);
+			hotspot.addEventListener("touchstart", startHold, { passive: false });
+			hotspot.addEventListener("mouseleave", endHold);
+			document.addEventListener("mouseup", endHold);
+			document.addEventListener("touchend", endHold);
+			document.addEventListener("touchcancel", endHold);
+
+			document.addEventListener("keydown", (e) => {
+				if (e.code === "Space" && intro.dataset.state === "done") {
+					e.preventDefault();
+					window.location.href = "/about";
+				}
+			});
+		</script>
 	</body>
 </html>
